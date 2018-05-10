@@ -10,17 +10,13 @@ class Globe extends Component {
     render() {
         return (
             <Entity
-                primitive="a-sphere"
-                src="#earthTexture"
-                height="1000"
-                width="1000"
-                animation__rotate={{
-                    property: 'rotation',
-                    dur: 20000,
-                    loop: true,
-                    to: '0 360 0'
+                wmtssphere={{
+                    color: '#36d900'
                 }}
-                position={{ x: 0, y: 1, z: -3 }}
+                primitive="a-sphere"
+                radius={3}
+                position={{ x: 0.0, y: 5, z: -10.0 }}
+                color="#FAFAF1"
             />
 
         )

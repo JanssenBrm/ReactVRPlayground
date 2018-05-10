@@ -9,7 +9,10 @@ class Camera extends Component {
 
     render() {
         return (
-            <Entity primitive="a-camera">
+            <Entity
+                primitive="a-camera"
+                position={{ x: 0, y: 3.5, z: 0.0 }}
+            >
                 <Entity
                     primitive="a-cursor"
                     animation__click={{

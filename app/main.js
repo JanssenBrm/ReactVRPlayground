@@ -10,24 +10,21 @@ import World from "./components/world/world.component";
 import Camera from "./components/camera/camera.component";
 import Globe from "./components/sphere/globe.component";
 
-const COLORS = ['#D92B6A', '#9564F2', '#FFCF59']
-
 class Main extends Component {
   constructor() {
     super()
-    this.state = { color: 'red' }
-  }
-
-  changeColor() {
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue']
-    this.setState({
-      color: colors[Math.floor(Math.random() * colors.length)]
-    })
   }
 
   render() {
     return (
-      <Scene>
+      <Scene
+          environment={{
+              preset: 'forest',
+              seed: 2,
+              lightPosition: { x: 0.0, y: 0.03, z: -0.5 },
+              fog: 0.8,
+              grid: 'none'
+          }}>
           <a-assets>
               <img crossOrigin id="groundTexture" src="img/floor.jpg" />
               <img crossOrigin id="skyTexture" src="img/sky.jpg" />

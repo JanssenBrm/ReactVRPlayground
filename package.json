@@ -1,15 +1,18 @@
 {
-  "name": "A-Frame-Preact",
+  "name": "reactvrplaygorund",
   "description": "A boilerplate project for getting started with WebVR using A-Frame and Preact",
   "private": true,
   "author": "Prayash Thapa",
   "homepage": "http://effulgence.io/",
   "version": "1.0.0",
-  "repository": "https://github.com/prayasht/aframe-preact-starter/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prayasht/aframe-preact-starter.git"
+  },
   "scripts": {
     "start": "brunch watch --server",
     "build": "brunch build --production",
-    "deploy": "ghpages -d public"
+    "deploy": "npm run build && sudo gh-pages -d public"
   },
   "dependencies": {
     "aframe": "^0.6.1",
@@ -23,6 +26,8 @@
     "react-dom": "^16.3.2"
   },
   "devDependencies": {
+    "@angular/cli": "~1.7.1",
+    "@angular/compiler-cli": "^5.2.0",
     "auto-reload-brunch": "^2",
     "babel-brunch": "~6.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
@@ -31,5 +36,10 @@
     "clean-css-brunch": "^2",
     "ghpages": "0.0.3",
     "uglify-js-brunch": "^2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/prayasht/aframe-preact-starter/issues"
+  },
+  "main": "brunch-config.js",
+  "license": "ISC"
 }
