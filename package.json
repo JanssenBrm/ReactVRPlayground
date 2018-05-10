@@ -21,6 +21,7 @@
     "aframe-event-set-component": "^3.0.3",
     "aframe-particle-system-component": "^1.0.10",
     "aframe-react": "^4.4.0",
+    "openlayers": "^4.6.5",
     "preact": "^8.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"

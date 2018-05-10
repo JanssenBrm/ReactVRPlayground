@@ -1,31 +1,53 @@
-function animate() {
-    console.log("aninmate");
-}
+var renderer;
+var wmtsMap;
 
-/**
- * @fileoverview
- * This is our custom A-Frame component.
- * It is responsible for adding the outer wireframe mesh
- * and nodes to its vertices.
- */
+var wmtsCapabilities = "";
+var wmtsHost, wmtsLayer;
+
+import * as ol from 'openlayers';
+
+
+function getCapabilities(url){
+
+    const parser = new ol.format.WMTSCapabilities();
+    return fetch(url, { responseType: 'text' })
+        .then( response => {
+            return parser.read(response.body);
+        });
+}
 
 AFRAME.registerComponent('wmtssphere', {
     schema: {},
 
+
+    animate: function () {
+
+        if(wmtsCapabilities === '') {
+            getCapabilities(wmtsHost).then(capabilities => {
+                wmtsCapabilities = capabilities;
+                console.log("WMTS:", wmtsCapabilities);
+            });
+        }
+
+
+    },
+
     init: function() {
 
+        /* Rendering variables */
         const scene = document.querySelector('a-scene');
         const obj = this.el.getObject3D('mesh');
 
-
+        /* WMTS variables */
+        wmtsHost = this.data.host;
+        wmtsLayer = this.data.layer;
 
         const textureLoader = new THREE.TextureLoader();
-        const wmtsMap = textureLoader.load( '../img/world.jpg', animate );
+        wmtsMap = textureLoader.load( '../img/world.jpg', this.animate );
 
         scene.addEventListener('render-target-loaded', function () {
 
-            console.log(scene.renderer);
-            const wmsUrl = 'https://proba-v-mep.esa.int/applications/geo-viewer/app/geoserver/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=PV_MEP:PROBAV_S1_TOC_1KM_BROWSE&FORMAT=image/png&TIME=2018-05-09&SRS=EPSG:4326&WIDTH=1168&HEIGHT=437&BBOX=17.69361937745073,52.01040202184683,18.85267699463823,52.44444654695573';
+            renderer = scene.renderer;
             obj.material = new THREE.MeshPhongMaterial({
                 map: wmtsMap
             });

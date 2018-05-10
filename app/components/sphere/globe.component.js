@@ -11,7 +11,8 @@ class Globe extends Component {
         return (
             <Entity
                 wmtssphere={{
-                    color: '#36d900'
+                    host: 'https://proba-v-mep.esa.int/applications/geo-viewer/app/mapcache/wmts?service=WMTS&request=GetCapabilities',
+                    layer: 'PROBAV_S10_TOC_1KM_COLOR'
                 }}
                 primitive="a-sphere"
                 radius={3}
